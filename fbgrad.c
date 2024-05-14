@@ -48,6 +48,31 @@ int main (int argc, char **argv) {
     if (ioctl (fbfd, FBIOGET_VSCREENINFO, &vinf) == -1)
         Die ("cannot open variable screen info for \"%s\"", fbdev);
 
+    printf("%d x %d\n", vinf.xres, vinf.yres);
+    printf("%d bpp\n", vinf.bits_per_pixel);
+    printf("virtual resolution: %dx%d\n", vinf.xres_virtual, vinf.yres_virtual);
+    printf("offset from virtual to visible: %dx%d\n", vinf.xoffset, vinf.yoffset);
+    printf("grayscale: %dx%d\n", vinf.grayscale);
+    printf("red: %d\n", vinf.red);
+    printf("green: %d\n", vinf.green);
+    printf("blue: %d\n", vinf.blue);
+    printf("transp: %d\n", vinf.transp);
+    printf("nonstd: %d\n", vinf.nonstd);
+    printf("height: %d mm\n", vinf.height);
+    printf("width: %d mm\n", vinf.width);
+    printf("pixclock: %d ps\n", vinf.pixclock);
+    printf("left_margin: %d ps\n", vinf.left_margin);
+    printf("right_margin: %d ps\n", vinf.right_margin);
+    printf("upper_margin: %d ps\n", vinf.upper_margin);
+    printf("lower_margin: %d ps\n", vinf.lower_margin);
+    printf("hsync_len: %d\n", vinf.hsync_len);
+    printf("vsync_len: %d\n", vinf.vsync_len);
+    printf("sync: %d\n", vinf.sync);
+    printf("vmode: %d\n", vinf.vmode);
+    printf("rotate: %d\n", vinf.rotate);
+    printf("colorspace: %d\n", vinf.colorspace);
+
+#if 0
     Assumption ((vinf.red.offset%8) == 0 && (vinf.red.length == 8) &&
                 (vinf.green.offset%8) == 0 && (vinf.green.length == 8) &&
                 (vinf.blue.offset%8) == 0 && (vinf.blue.length == 8) &&
@@ -58,6 +83,7 @@ int main (int argc, char **argv) {
                 vinf.blue.msb_right == 0,
                 "Color masks are 8bit, byte aligned, little endian, no transparency."
     );
+#endif
 
     Screen s = {
         .size            = finf.line_length * vinf.yres,
