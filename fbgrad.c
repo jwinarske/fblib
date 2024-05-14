@@ -53,10 +53,10 @@ int main (int argc, char **argv) {
     printf("virtual resolution: %dx%d\n", vinf.xres_virtual, vinf.yres_virtual);
     printf("offset from virtual to visible: %dx%d\n", vinf.xoffset, vinf.yoffset);
     printf("grayscale: %dx%d\n", vinf.grayscale);
-    printf("red: %d\n", vinf.red);
-    printf("green: %d\n", vinf.green);
-    printf("blue: %d\n", vinf.blue);
-    printf("transp: %d\n", vinf.transp);
+    printf("red: offset: %d, length: %d, msb_right: %d\n", vinf.red.offset, vinf.red.length, vinf.red.msb_right);
+    printf("green: offset: %d, length: %d, msb_right: %d\n", vinf.green.offset, vinf.green.length, vinf.green.msb_right);
+    printf("blue: offset: %d, length: %d, msb_right: %d\n", vinf.blue.offset, vinf.blue.length, vinf.blue.msb_right);
+    printf("transp: offset: %d, length: %d, msb_right: %d\n", vinf.transp.offset, vinf.transp.length, vinf.transp.msb_right);    
     printf("nonstd: %d\n", vinf.nonstd);
     printf("height: %d mm\n", vinf.height);
     printf("width: %d mm\n", vinf.width);
