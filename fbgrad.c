@@ -17,7 +17,6 @@
 #include <time.h>
 
 #define fbdev "/dev/fb0"
-#define ttydev "/dev/tty"
 
 typedef struct {
     uint_fast8_t    r, g, b, a;
@@ -35,12 +34,6 @@ typedef struct {
     }
 
 int main (int argc, char **argv) {
-    int ttyfd = open (ttydev, O_RDWR);
-    if (ttyfd < 0)
-        Die ("cannot open \"%s\"", ttydev);
-
-    if (ioctl (ttyfd, KDSETMODE, KD_GRAPHICS) == -1)
-        Die ("cannot set tty into graphics mode on \"%s\"", ttydev);
 
     int fbfd = open (fbdev, O_RDWR);
     if (fbfd < 0)
@@ -99,11 +92,7 @@ int main (int argc, char **argv) {
 
     munmap (s.buffer, s.size);
 
-    if (ioctl (ttyfd, KDSETMODE, KD_TEXT) == -1)
-        Die ("cannot set tty into text mode on \"%s\"", ttydev);
-
     close (fbfd);
-    close (ttyfd);
 
     printf ("FPS: %.2f.\n", 255.0 / (time_end - time_start));
 
